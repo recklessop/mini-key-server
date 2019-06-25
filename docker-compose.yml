@@ -1,0 +1,27 @@
+# Use postgres/example user/password credentials
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: keyserver
+      POSTGRES_USER: keyserver
+      POSTGRES_DB: keyserver
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  keyserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      WAIT_HOSTS: postgres:5432
+      USERNAME: root
+      PASSWORD: changeme
+    ports:
+      - "8080:5000"
+    links:
+      - db

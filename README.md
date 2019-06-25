@@ -142,6 +142,10 @@ The database schema is likely to change as this software is still young. Appropr
 - Please run this software behind HTTPS, otherwise keys can be spoofed. Use [Qualys SSL Labs](https://www.ssllabs.com/) to verify. I recommend setting up HTTP Public Key Pinning - otherwise a bogus CA root can be issued to also spoof an instance of your domain. Setting up HPKP is not within the scope of this project.
 - Keys can be shared between machines, if disallowing this is important to you, use a different product. I am working on a way to seed activations via a mini-key-server client library.
 
+## Docker Container
+Simply run `docker-compose up` in the root of this project. It will create a postgresql database. Make sure to change the config.py to your needs. To define a default user and password, change the USERNAME und PASSWORD environment in the docker-compose.yml-file.
+If you need additional users, simply run `docker exec -it keyserver:latest python -m flask create-user <username> <password>`.
+
 ## TODO
 
 - Client-side library (in progress)

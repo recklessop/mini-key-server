@@ -115,3 +115,6 @@ keyserv/config.py
 
 keyserv/keyserver.db
 app.yaml
+
+# Postgres persistent docker
+pgdata/*
